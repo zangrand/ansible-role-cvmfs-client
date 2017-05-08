@@ -1,2 +1,6 @@
 ---
 # tasks file for cvmfs-client
+
+- include: client_install.yml
+
+- include: client_config.yml

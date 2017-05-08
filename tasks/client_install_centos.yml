@@ -1,0 +1,13 @@
+---
+- name: Install cvmfs repository
+  yum:
+    name: 'https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm'
+    state: present
+
+- name: Install cmvfs client
+  yum:
+    name: '{{ item }}'
+    update_cache: yes
+  with_items:
+   - cvmfs
+   - cvmfs-config-default

@@ -7,7 +7,9 @@ repository_name: 'elixir-italy.galaxy.refdata'
 
 cvmfs_server_url: 'http://{{ server_url }}/cvmfs/{{ repository_name }}'
 
-cvmfs_public_key_path: '/etc/cvmfs/keys/{{ repository_name }}.pub'
+cvmfs_public_key_path: '/etc/cvmfs/keys'
+
+cvmfs_public_key: '{{ repository_name }}.pub'
 
 # A list of *.pub files with the key to the repository to be mounted.
 cvmfs_public_key_list_files: [ "repository_key.pub" ]
@@ -16,4 +18,4 @@ proxy_url: 'elixir-italy.org'
 
 proxy_port: 80
 
-cvmfs_http_proxy: 'http://{{ proxy }}:{{ proxy_port }}'
+cvmfs_http_proxy: 'http://{{ proxy_url }}:{{ proxy_port }}'
