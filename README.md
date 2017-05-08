@@ -1,4 +1,4 @@
-Role Name
+Ansible-role-cvmfs-client
 =========
 
 Ansible role to install CernVM FS client.
