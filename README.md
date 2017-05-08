@@ -1,12 +1,18 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Ansible role to install CernVM FS client.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Pythonn is required on host to run ansible: sudo apt-get install python
+
+The apt ansible module requires the following packages on host to run:
+
+- python-apt (python 2)
+- python3-apt (python 3)
+- aptitude
 
 Role Variables
 --------------
@@ -23,16 +29,22 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: server
+      pre_tasks:
+        - name: Get server public key
+          get_url:
+            url: 'https://raw.githubusercontent.com/mtangaro/galaxy-reference-data-repository/master/server_public_keys/elixir-italy.galaxy.refdata.pub'
+            dest: '/tmp/'
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: cvmfs-client
+           server_url: '<IP ADDRESS OR URL STRATUM 0 OR STRATUM 1 SERVER>'
+           repository_name: 'elixir-italy.galaxy.refdata'
+           cvmfs_public_key_list_files: [ "/tmp/elixir-italy.galaxy.refdata.pub" ]
+           proxy_url: '<PROXY SERVER OR DIRECT>'
+           proxy_port: 80             
+
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Apache2
