@@ -41,9 +41,8 @@
 - include: mount.yml
   when: cvmfs_mountpoint != '/cvmfs'
 
-
 - name: Add fstab entry
-  fstab:
+  mount:
     src: '{{ repository_name }}'
     path: '{{ cvmfs_ mountpoint }}'
     otps: defaults,_netdev,nodev
