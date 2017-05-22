@@ -21,6 +21,7 @@
     name: autofs
     state: restarted
 
+#________________________________
 # Check configuration
 
 - name: Check config
@@ -31,19 +32,22 @@
     msg: 'cvmfs_config chksetup fail!'
   when: chksetup_output.stdout != 'OK'
 
+#________________________________
 # Mount cmvfs
 
-- name: Mount filesystem
-  command: 'cvmfs_config probe'
-  register: probe_output
+- include: probe.yml
+  when: cvmfs_mountpoint == '/cmvfs'
 
-#sudo mount -t cvmfs elixir-italy.galaxy.refdata /home/galaxy/refdata
-# refdata needs to be owned by root!!!
+- include: mount.yml
+  when: cvmfs_mountpoint != '/cvmfs'
 
-- fail:
-    msg: 'cvmfs_config probe fail!'
-  when: probe_output.stdout != 'Probing /cvmfs/elixir-italy.galaxy.refdata... OK' 
 
-# Add fstab entry
+- name: Add fstab entry
+  fstab:
+    src: '{{ repository_name }}'
+    path: '{{ cvmfs_ mountpoint }}'
+    otps: defaults,_netdev,nodev
+    state: present
+     
 # lineinfile
-#atlas.cern.ch /mnt/test cvmfs defaults,_netdev,nodev 0 0
+#{{ repository_name }} {{ cvmfs_mountpoint }} cvmfs defaults,_netdev,nodev 0 0

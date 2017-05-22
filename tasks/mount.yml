@@ -1,0 +1,5 @@
+---
+- name: Mount cmvfs to {{ cvmfs_mountpoint }}
+  command : 'mount -t cvmfs {{ repository_url }} {{ cvmfs_mountpoint }}'
+  register: mount_output
+

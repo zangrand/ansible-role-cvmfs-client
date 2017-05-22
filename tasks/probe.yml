@@ -1,0 +1,9 @@
+---
+- name: Mount cvmfs to /cvmfs
+  command: 'cvmfs_config probe'
+  register: probe_output
+
+- fail:
+    msg: 'cvmfs_config probe fail!'
+  when: probe_output.stdout != 'Probing /cvmfs/elixir-italy.galaxy.refdata... OK'
+
