@@ -1,7 +1,7 @@
 ---
 - name: Create mountpoint
-  files:
-    path: "{{ item }}"
+  file:
+    path: '{{ item }}'
     state: directory
   with_items:
     - '{{ cvmfs_mountpoint }}'
