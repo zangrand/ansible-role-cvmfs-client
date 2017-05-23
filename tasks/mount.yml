@@ -10,4 +10,3 @@
 - name: Mount cmvfs to {{ cvmfs_mountpoint }}
   command : 'mount -t cvmfs {{ repository_name }} {{ cvmfs_mountpoint }}/{{ repository_name }}'
   register: mount_output
-
