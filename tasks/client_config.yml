@@ -12,7 +12,7 @@
 
 - name: Copy public key
   copy:
-    src: '/tmp/{{ repository_name }}.pub'
+    src: '{{ public_key_src_path }}/{{ repository_name }}.pub'
     dest: '/etc/cvmfs/keys/{{ repository_name }}.pub'
     remote_src: true
 
@@ -45,7 +45,7 @@
   mount:
     src: '{{ repository_name }}'
     path: '{{ cvmfs_ mountpoint }}'
-    otps: defaults,_netdev,nodev
+    opts: defaults,_netdev,nodev
     state: present
      
 # lineinfile
