@@ -36,7 +36,7 @@
 # Mount cmvfs
 
 - include: probe.yml
-  when: cvmfs_mountpoint == '/cmvfs'
+  when: cvmfs_mountpoint == '/cvmfs'
 
 - include: mount.yml
   when: cvmfs_mountpoint != '/cvmfs'

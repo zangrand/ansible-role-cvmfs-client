@@ -16,7 +16,7 @@ cvmfs_public_key_list_files: [ "repository_key.pub" ]
 
 public_key_src_path: '/tmp'
 
-proxy_url: 'elixir-italy.org'
+proxy_url: 'DIRECT'
 
 proxy_port: 80
 
