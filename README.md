@@ -1,7 +1,7 @@
-Ansible-role-cvmfs-client
+Indigo-dc.cvmfs-client
 =========
 
-Ansible role to install CernVM FS client.
+Ansible role to install CernVM-FS Client.
 
 Requirements
 ------------
@@ -11,8 +11,6 @@ Python is required on host to run ansible: sudo apt-get install python
 The apt ansible module requires the following packages on host to run:
 
 - python-apt (python 2)
-- python3-apt (python 3)
-- aptitude
 
 Example Playbook
 ----------------
@@ -33,11 +31,13 @@ Including an example of how to use your role (for instance, with variables passe
            proxy_url: '<PROXY SERVER OR DIRECT>'
            proxy_port: 80             
 
-
 License
 -------
 
-Apache2
+Apache Licence v2
+
+http://www.apache.org/licenses/LICENSE-2.0
+
 
 Reference
 ---------
