@@ -1,5 +1,5 @@
 Indigo-dc.cvmfs-client
-=========
+======================
 
 Ansible role to install CernVM-FS Client.
 
