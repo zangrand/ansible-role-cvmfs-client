@@ -1,7 +1,7 @@
 ---
 - name: Create mountpoint
-  files:
-    path: "{{ item }}"
+  file:
+    path: '{{ item }}'
     state: directory
   with_items:
     - '{{ cvmfs_mountpoint }}'
@@ -10,4 +10,3 @@
 - name: Mount cmvfs to {{ cvmfs_mountpoint }}
   command : 'mount -t cvmfs {{ repository_name }} {{ cvmfs_mountpoint }}/{{ repository_name }}'
   register: mount_output
-
