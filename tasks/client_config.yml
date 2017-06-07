@@ -43,11 +43,12 @@
 
 - name: Add fstab entry
   mount:
-    path: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
+    dest: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
     src: '{{ repository_name }}'
     fstype: cvmfs
     opts: defaults,_netdev,nodev
     state: present
-     
+  when: add_fstab_entry|bool
+ 
 # lineinfile
 #{{ repository_name }} {{ cvmfs_mountpoint }} cvmfs defaults,_netdev,nodev 0 0
