@@ -33,7 +33,7 @@
   when: chksetup_output.stdout != 'OK'
 
 #________________________________
-# Mount cmvfs
+# Mount cvmfs
 
 - include: probe.yml
   when: cvmfs_mountpoint == '/cvmfs'
