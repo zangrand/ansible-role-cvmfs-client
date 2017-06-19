@@ -48,7 +48,7 @@
     fstype: cvmfs
     opts: defaults,_netdev,nodev
     state: present
-  when: add_fstab_entry|bool  and ansible_version >= "2.3.0.0"
+  when: add_fstab_entry|bool  and ansible_version.full >= "2.3.0.0"
 
 - name: Add fstab entry
   mount:
@@ -57,7 +57,7 @@
     fstype: cvmfs
     opts: defaults,_netdev,nodev
     state: present
-  when: add_fstab_entry|bool and ansible_version < "2.3.0.0"
+  when: add_fstab_entry|bool and ansible_version.full < "2.3.0.0"
 
 # lineinfile
 #{{ repository_name }} {{ cvmfs_mountpoint }} cvmfs defaults,_netdev,nodev 0 0
