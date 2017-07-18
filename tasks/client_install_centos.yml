@@ -16,15 +16,16 @@
    - cvmfs-config-default
   register: install_cvmfs
   ignore_errors: yes
+  when: install_yum_repo.failed is undefined
 
 - name: '[EL] Copy rpm'
   copy:
     src: '{{ item }}'
-    dest: '/tmp'
-    remote_src: yes
+    dest: '/tmp/'
   with_items:
     - 'cvmfs-2.3.5-1.el7.centos.x86_64.rpm'
     - 'cvmfs-config-default-1.4-1.noarch.rpm'
+  when: install_yum_repo.failed is defined or install_cvmfs.failed is defined
 
 - name: '[EL] Install cvmfs from rpm'
   yum:
