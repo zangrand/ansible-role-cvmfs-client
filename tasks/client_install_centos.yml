@@ -1,13 +1,36 @@
 ---
-- name: Install cvmfs repository
+- name: '[EL] Install cvmfs repository'
   yum:
     name: 'https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm'
     state: present
+  register: install_yum_repo
+  ignore_errors: yes
 
-- name: Install cmvfs client
+- name: '[EL] Install cvmfs client'
   yum:
     name: '{{ item }}'
     update_cache: yes
+    state: present
   with_items:
    - cvmfs
    - cvmfs-config-default
+  register: install_cvmfs
+  ignore_errors: yes
+
+- name: '[EL] Copy rpm'
+  copy:
+    src: '{{ item }}'
+    dest: '/tmp'
+    remote_src: yes
+  with_items:
+    - 'cvmfs-2.3.5-1.el7.centos.x86_64.rpm'
+    - 'cvmfs-config-default-1.4-1.noarch.rpm'
+
+- name: '[EL] Install cvmfs from rpm'
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - '/tmp/cvmfs-2.3.5-1.el7.centos.x86_64.rpm'
+    - '/tmp/cvmfs-config-default-1.4-1.noarch.rpm'
+  when: install_yum_repo.failed is defined or install_cvmfs.failed is defined
