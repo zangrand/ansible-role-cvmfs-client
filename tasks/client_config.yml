@@ -52,7 +52,7 @@
 
 - name: Add fstab entry
   mount:
-    dest: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
+    name: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
     src: '{{ repository_name }}'
     fstype: cvmfs
     opts: defaults,_netdev,nodev
