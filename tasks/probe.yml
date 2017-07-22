@@ -5,5 +5,23 @@
 
 - fail:
     msg: 'cvmfs_config probe fail!'
-  when: probe_output.stdout != 'Probing /cvmfs/elixir-italy.galaxy.refdata... OK'
+  when: probe_output.stdout != 'Probing /cvmfs/{{ repository_name }}... OK'
+
+- name: Add fstab entry
+  mount:
+    path: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
+    src: '{{ repository_name }}'
+    fstype: cvmfs
+    opts: defaults,_netdev,nodev
+    state: present
+  when: add_fstab_entry|bool and ansible_version.full >= "2.3.0.0"
+
+- name: Add fstab entry
+  mount:
+    name: '{{ cvmfs_mountpoint }}/{{ repository_name }}'
+    src: '{{ repository_name }}'
+    fstype: cvmfs
+    opts: defaults,_netdev,nodev
+    state: present
+  when: add_fstab_entry|bool and ansible_version.full < "2.3.0.0"
 
