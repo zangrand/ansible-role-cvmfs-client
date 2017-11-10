@@ -16,27 +16,41 @@
     dest: '/etc/cvmfs/keys/{{ repository_name }}.pub'
     remote_src: true
 
-- name: Restart autofs
+- name: '[VM] Restart autofs'
   service:
     name: autofs
     state: restarted
+  when: ansible_virtualization_type != "docker"
 
 #________________________________
 # Check configuration
 
-- name: Check config
+- name: '[VM] Check config'
   command: 'cvmfs_config chksetup'
   register: chksetup_output
+  when: ansible_virtualization_type != "docker"
 
 - fail:
     msg: 'cvmfs_config chksetup fail!'
-  when: chksetup_output.stdout != 'OK'
+  when:
+    - chksetup_output.stdout is defined
+    - chksetup_output.stdout != 'OK'
 
 #________________________________
 # Mount cvmfs
 
-- include: probe.yml
-  when: cvmfs_mountpoint == '/cvmfs'
+- name: '[VM] mount cvmfs using cvmfs_config probe'
+  include: probe.yml
+  when:
+  - cvmfs_mountpoint == '/cvmfs'
+  - ansible_virtualization_type != "docker"
 
-- include: mount.yml
-  when: cvmfs_mountpoint != '/cvmfs'
+- name: '[VM] mount cvmfs manually'
+  include: mount.yml
+  when:
+    - cvmfs_mountpoint != '/cvmfs'
+    - ansible_virtualization_type != "docker"
+
+- name: '[Docker] mount cvmfs'
+  include: mount.yml
+  when: ansible_virtualization_type == "docker"
