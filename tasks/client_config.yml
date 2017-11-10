@@ -20,7 +20,7 @@
   service:
     name: autofs
     state: restarted
-
+  when: ansible_virtualization_type == "docker"
 #________________________________
 # Check configuration
 
