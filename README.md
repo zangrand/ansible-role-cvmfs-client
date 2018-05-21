@@ -23,7 +23,9 @@ Variables
 
 ``cvmfs_public_key_path``: set path for cvmfs keys (default: ``/etc/cvmfs/keys``).
 
-``cvmfs_public_key``: set cvfms public key, usually `<repository_name.pub>` (defatul: ``{{ repository_name }}.pub``).
+``cvmfs_public_key``: set cvfms public key, usually `<repository_name.pub>` (default: ``{{ repository_name }}.pub``).
+
+``cvmfs_preconfigured``: allow to mount cvmfs molumes importing preconfigured file (default: ``false``)
 
 ``cvmfs_public_key_list_files``:  list of ``*.pub`` files with the key to the repository to be mounted.
 
@@ -54,8 +56,20 @@ The role takes as input parameters the CernVM-FS server location details (stratu
         proxy_url: 'DIRECT'
         proxy_port: '80'
         cvmfs_mountpoint: '/refdata'
-        when:  refdata_provider_type == 'cvmfs'
 ```
+
+Mount volume through preconfigured cvmfs config.d files
+
+```yaml
+  - hosts: servers
+    roles:
+      - role: indigo-dc.cvmfs-client
+        repository_name: 'elixir-italy.galaxy.refdata'
+        cvmfs_public_key: 'elixir-italy.galaxy.refdata.pub'
+        cvmfs_mountpoint: '/refdata'
+        cvmfs_preconfigured: true
+```
+
 
 License
 -------
