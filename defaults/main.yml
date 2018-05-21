@@ -11,6 +11,9 @@ cvmfs_public_key_path: '/etc/cvmfs/keys'
 
 cvmfs_public_key: '{{ repository_name }}.pub'
 
+# Allow to mount cvmfs molumes importing preconfigured file
+cvmfs_preconfigured: false
+
 # A list of *.pub files with the key to the repository to be mounted.
 cvmfs_public_key_list_files: [ "repository_key.pub" ]
 

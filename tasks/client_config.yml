@@ -2,17 +2,27 @@
 - name: Base setup
   command: 'cvmfs_config setup'
 
-- name: Copy files
+- name: Build default.local file
   template:
-    src: '{{ item.template }}'
-    dest: '{{ item.dest }}'
-  with_items:
-    - { template: default.local.j2, dest: /etc/cvmfs/default.local }
-    - { template: repository.conf.j2, dest: '/etc/cvmfs/config.d/{{ repository_name }}.conf' }
+    src: default.local.j2
+    dest: /etc/cvmfs/default.local
+
+- name: Build repository config.d file
+  template:
+    src: repository.conf.j2
+    dest: '/etc/cvmfs/config.d/{{ repository_name }}.conf'
+  when: not cvmfs_preconfigured|bool
+
+- name: Copy preconfigured config.d file
+  copy:
+    src: '{{ public_key_src_path }}/{{ repository_name }}.conf'
+    dest: '/etc/cvmfs/config.d/{{ repository_name }}.conf'
+    remote_src: true
+  when: cvmfs_preconfigured|bool
 
 - name: Copy public key
   copy:
-    src: '{{ public_key_src_path }}/{{ repository_name }}.pub'
+    src: '{{ public_key_src_path }}/{{ cvmfs_public_key }}'
     dest: '/etc/cvmfs/keys/{{ repository_name }}.pub'
     remote_src: true
 
