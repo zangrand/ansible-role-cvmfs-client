@@ -44,7 +44,7 @@
     msg: 'cvmfs_config chksetup fail!'
   when:
     - chksetup_output.stdout is defined
-    - chksetup_output.stdout != 'OK'
+    - chksetup_output.rc != 0
 
 #________________________________
 # Mount cvmfs
