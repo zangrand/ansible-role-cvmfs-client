@@ -27,6 +27,8 @@ Variables
 
 ``cvmfs_preconfigured``: allow to mount cvmfs molumes importing preconfigured file (default: ``false``)
 
+Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-data-galaxycloud-repository).
+
 ``cvmfs_public_key_list_files``:  list of ``*.pub`` files with the key to the repository to be mounted.
 
 ``public_key_src_path``: set cvmfs public key temporary path (default: ``/tmp``).
