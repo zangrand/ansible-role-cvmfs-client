@@ -1,13 +1,13 @@
 ---
 # defaults file for cvmfs-client
 
-server_url: 'elixir-italy.org' 
+server_url: 'rgw-cloud.pd.infn.it' 
 
-repository_name: 'elixir-italy.galaxy.refdata'
+repository_name: 'unpacked.infn.it'
 
-cvmfs_server_url: 'http://{{ server_url }}/cvmfs/{{ repository_name }}'
+cvmfs_server_url: 'https://{{ server_url }}/cvmfswp6dc/{{ repository_name }}'
 
-cvmfs_public_key_path: '/etc/cvmfs/keys'
+cvmfs_public_key_path: '/etc/cvmfs/keys/infn.it'
 
 cvmfs_public_key: '{{ repository_name }}.pub'
 
