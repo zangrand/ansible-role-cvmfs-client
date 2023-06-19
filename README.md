@@ -51,13 +51,13 @@ The role takes as input parameters the CernVM-FS server location details (stratu
 ```yaml
   - hosts: servers
     roles:
-      - role: indigo-dc.cvmfs-client
-        server_url: '90.147.102.186'
-        repository_name: 'elixir-italy.galaxy.refdata'
-        cvmfs_public_key: 'elixir-italy.galaxy.refdata.pub'
+      - role: marcoverl.cvmfs-client
+        server_url: 'rgw-cloud.pd.infn.it'
+        repository_name: 'unpacked.infn.it'
+        cvmfs_public_key: 'unpacked.infn.it.pub'
         proxy_url: 'DIRECT'
         proxy_port: '80'
-        cvmfs_mountpoint: '/refdata'
+        cvmfs_mountpoint: '/cvmfs'
 ```
 
 Mount volume through preconfigured cvmfs config.d files
@@ -65,9 +65,9 @@ Mount volume through preconfigured cvmfs config.d files
 ```yaml
   - hosts: servers
     roles:
-      - role: indigo-dc.cvmfs-client
-        repository_name: 'elixir-italy.galaxy.refdata'
-        cvmfs_public_key: 'elixir-italy.galaxy.refdata.pub'
+      - role: marcoverl.cvmfs-client
+        repository_name: 'rgw-cloud.pd.infn.it'
+        cvmfs_public_key: 'unpacked.infn.it.pub'
         cvmfs_mountpoint: '/refdata'
         cvmfs_preconfigured: true
 ```
