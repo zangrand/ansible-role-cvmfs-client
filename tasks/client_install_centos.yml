@@ -23,7 +23,7 @@
     src: '{{ item }}'
     dest: '/tmp/'
   with_items:
-    - 'cvmfs-2.10.1-1.el7.centos.x86_64.rpm'
+    - 'cvmfs-2.10.1-1.el9.x86_64.rpm'
     - 'cvmfs-config-default-2.0-2.noarch.rpm'
   when: install_yum_repo.failed is defined or install_cvmfs.failed is defined
 
@@ -32,6 +32,6 @@
     name: '{{ item }}'
     state: present
   with_items:
-    - '/tmp/cvmfs-2.10.1-1.el7.centos.x86_64.rpm'
+    - '/tmp/cvmfs-2.10.1-1.el9.x86_64.rpm'
     - '/tmp/cvmfs-config-default-2.0-2.noarch.rpm'
   when: install_yum_repo.failed is defined or install_cvmfs.failed is defined
