@@ -1,4 +1,4 @@
-unpacked_info:
+galaxy_info:
   author: Marco Verlato
   description: Ansible role to setup a CernVM-FS client
   company: INFN
@@ -11,7 +11,7 @@ unpacked_info:
   #- name: EL
   #  versions:
   #  - 7
-  unpacked_tags:
+  galaxy_tags:
     - cvmfs
     - filesystem
 dependencies: []
