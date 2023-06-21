@@ -22,11 +22,10 @@
 
 - name: Copy public key
   copy:
-    src: '{{ public_key_src_path }}/{{ cvmfs_public_key }}'
+    src: 'repository_key.pub'
     dest: '/etc/cvmfs/keys/{{ repository_name }}.pub'
-    remote_src: true
   when: not cvmfs_preconfigured|bool
-
+ 
 - name: Copy public key for preconfigured repository
   copy:
     src: '{{ public_key_src_path }}/{{ repository_name }}.pub'
