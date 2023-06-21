@@ -1,4 +1,4 @@
-Indigo-dc.cvmfs-client
+marcoverl.cvmfs_client
 ======================
 
 Ansible role to install CernVM-FS Client.
@@ -17,7 +17,7 @@ Variables
 
 ``server_url``: set cvmfs server url (e.g. ip address or domain).
 
-``repository_name``: set cvmfs server repository name (default: ``elixir-italy.galaxy.refdata``).
+``repository_name``: set cvmfs server repository name (default: ``unpacked.infn.it``).
 
 ``cvmfs_server_url``: sert cvmfs server complete url (default: ``'http://{{ server_url }}/cvmfs/{{ repository_name }}``).
 
@@ -51,7 +51,7 @@ The role takes as input parameters the CernVM-FS server location details (stratu
 ```yaml
   - hosts: servers
     roles:
-      - role: marcoverl.cvmfs-client
+      - role: marcoverl.cvmfs_client
         server_url: 'rgw-cloud.pd.infn.it'
         repository_name: 'unpacked.infn.it'
         cvmfs_public_key: 'unpacked.infn.it.pub'
@@ -65,7 +65,7 @@ Mount volume through preconfigured cvmfs config.d files
 ```yaml
   - hosts: servers
     roles:
-      - role: marcoverl.cvmfs-client
+      - role: marcoverl.cvmfs_client
         repository_name: 'rgw-cloud.pd.infn.it'
         cvmfs_public_key: 'unpacked.infn.it.pub'
         cvmfs_mountpoint: '/refdata'
