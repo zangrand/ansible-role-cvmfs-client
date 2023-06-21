@@ -9,3 +9,12 @@
 
 - include: client_config.yml
   when: cvmfs_stat.rc != 0
+
+- include: snapshotter_config.yml
+  when: snapshotter != 'none'
+
+- include: snapshotter_install.yml
+  when: snapshotter != 'none'
+
+
+  
