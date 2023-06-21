@@ -5,3 +5,8 @@ CVMFS_HTTP_PROXY=DIRECT
 {% else %}
 CVMFS_HTTP_PROXY={{ cvmfs_http_proxy }}
 {% endif %}
+{% if ansible_os_family == 'Debian' %}
+X509_CERT_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+{% else %}
+X509_CERT_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
+{% endif %}
