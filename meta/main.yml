@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: cvmfs-client
+  role_name: cvmfs_client
   author: Marco Verlato
   description: Ansible role to setup a CernVM-FS client
   company: INFN
