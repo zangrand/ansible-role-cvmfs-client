@@ -20,6 +20,11 @@
     remote_src: true
   when: cvmfs_preconfigured|bool
 
+- name: Create public key path
+  file:
+    path: '{{cvmfs_public_key_path}}'
+    state: directory
+
 - name: Copy public key
   copy:
     src: 'repository_key.pub'
