@@ -30,3 +30,5 @@ cvmfs_mountpoint: '/cvmfs'
 add_fstab_entry: true
 
 snapshotter: 'none'
+
+containerd_remote_snapshotter_path: '/usr/local/share'
