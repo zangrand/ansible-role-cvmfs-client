@@ -13,4 +13,7 @@
     - { repo: "https://github.com/marcoverl/containerd-remote-snapshotter", dest: "{{snapshotter_path}}/containerd-remote-snapshotter", version: "HEAD" }
   
 - name: Build snapshotter
-  command:  go mod tidy && PREFIX=/usr/local/bin/ make chdir={{snapshotter_path}}/containerd-remote-snapshotter
+  command: go mod tidy chdir={{snapshotter_path}}/containerd-remote-snapshotter 
+- command: make chdir={{snapshotter_path}}/containerd-remote-snapshotter
+  environment: 
+    PREFIX: "/usr/local/bin"
