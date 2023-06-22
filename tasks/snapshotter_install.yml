@@ -7,6 +7,11 @@
     - make
     - fuse3
     
+- name: Creates directory for git clone
+  file:
+    path: {{snapshotter_path}}/containerd-remote-snapshotter
+    state: directory
+    
 - name: Clone git repository
   git: repo={{ item.repo }} dest={{ item.dest }} clone=yes version={{item.version}}
   with_items:
