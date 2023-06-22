@@ -9,7 +9,7 @@
     
 - name: Creates directory for git clone
   file:
-    path: {{snapshotter_path}}/containerd-remote-snapshotter
+    path: "{{snapshotter_path}}/containerd-remote-snapshotter"
     state: directory
     
 - name: Clone git repository
