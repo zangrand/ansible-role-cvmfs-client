@@ -14,7 +14,7 @@
     path: /etc/containerd/config.toml 
     regexp: '{{item.from}}' 
     line: '{{item.to}}'
-    backrefs: yes
+    firstmatch: yes
   with_items:
   - { from: '^(.*)disable_snapshot_annotations(.*)$', to: 'disable_snapshot_annotations = false' }
   - { from: '^(.*)snapshotter(.*)$', to: 'snapshotter = "cvmfs-snapshotter"' }
