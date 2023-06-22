@@ -2,20 +2,17 @@
   file:
     path: /etc/containerd-cvmfs-grpc
     state: directory
-  when: not cvmfs_preconfigured|bool
   
 - name: Copy config files
   copy:
     src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/containerd-cvmfs-grpc/config.toml'
     dest: '/etc/containerd-cvmfs-grpc/config.toml'
-  when: not cvmfs_preconfigured|bool
 
 - name: Copy config files
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
   - { src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/containerd-cvmfs-grpc/config.toml', dest: '/etc/containerd-cvmfs-grpc/config.toml' }
   - { src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/systemd/system/cvmfs-snapshotter.service', dest: '/etc/systemd/system/cvmfs-snapshotter.service' }
-  when: not cvmfs_preconfigured|bool
   
 - name: replace lines in containerd config.toml
   lineinfile: 
@@ -26,11 +23,21 @@
   with_items:
   - { from: '^(.*)disable_snapshot_annotations(.*)$', to: 'disable_snapshot_annotations = false' }
   - { from: '^(.*)snapshotter(.*)$', to: 'snapshotter = "cvmfs-snapshotter"' }
-  when: not cvmfs_preconfigured|bool
 
 - name: insert lines in containerd config.toml
   lineinfile:
     path: /etc/containerd/config.toml 
     line:  [proxy_plugins.cvmfs-snapshotter]\n type = "snapshot"\n address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"
     insertafter: [proxy_plugins]
-  when: not cvmfs_preconfigured|bool
+
+- name: enable the snapshotter
+  systemd:
+    name: cvmfs-snapshotter
+    state: started
+    enabled: yes
+
+- name: restart containerd
+  systemd:
+    name: containerd
+    state: restarted
+
