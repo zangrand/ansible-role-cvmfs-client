@@ -1,7 +1,5 @@
 - name: Install go with snap
-  community.general.snap:
-    name: go
-    classic: yes
+  snap: name=go classic=yes
     
 - name: Install other packages
   apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
