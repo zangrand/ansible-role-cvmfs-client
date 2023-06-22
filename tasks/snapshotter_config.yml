@@ -2,11 +2,6 @@
   file:
     path: /etc/containerd-cvmfs-grpc
     state: directory
-  
-- name: Copy config files
-  copy:
-    src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/containerd-cvmfs-grpc/config.toml'
-    dest: '/etc/containerd-cvmfs-grpc/config.toml'
 
 - name: Copy config files
   copy: src={{ item.src }} dest={{ item.dest }}
