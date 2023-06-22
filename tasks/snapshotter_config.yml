@@ -27,7 +27,7 @@
 - name: insert lines in containerd config.toml
   lineinfile:
     path: /etc/containerd/config.toml 
-    line:  [proxy_plugins.cvmfs-snapshotter]\n type = "snapshot"\n address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"
+    line: '[proxy_plugins.cvmfs-snapshotter]\n type = "snapshot"\n address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"'
     insertafter: [proxy_plugins]
 
 - name: enable the snapshotter
