@@ -20,10 +20,13 @@
   - { from: '^(.*)snapshotter(.*)$', to: 'snapshotter = "cvmfs-snapshotter"' }
 
 - name: insert lines in containerd config.toml
-  lineinfile:
-    path: /etc/containerd/config.toml 
-    line: '[proxy_plugins.cvmfs-snapshotter]\n type = "snapshot"\n address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"'
+  blockinfile:
+    path: /etc/containerd/config.toml
     insertafter: '[proxy_plugins]'
+    block: |
+      [proxy_plugins.cvmfs-snapshotter]
+       type = "snapshot"
+       address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"
 
 - name: enable the snapshotter
   systemd:
