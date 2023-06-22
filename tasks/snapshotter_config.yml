@@ -17,13 +17,20 @@
   - { src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/systemd/system/cvmfs-snapshotter.service', dest: '/etc/systemd/system/cvmfs-snapshotter.service' }
   when: not cvmfs_preconfigured|bool
   
-- name: replace line
+- name: replace lines in containerd config.toml
   lineinfile: 
-  path: /etc/containerd/config.toml 
-  regexp: '{{item.from}}' 
-  line: '{{item.to}}'
-  backrefs: yes
+    path: /etc/containerd/config.toml 
+    regexp: '{{item.from}}' 
+    line: '{{item.to}}'
+    backrefs: yes
   with_items:
   - { from: '^(.*)disable_snapshot_annotations(.*)$', to: 'disable_snapshot_annotations = false' }
   - { from: '^(.*)snapshotter(.*)$', to: 'snapshotter = "cvmfs-snapshotter"' }
+  when: not cvmfs_preconfigured|bool
+
+- name: insert lines in containerd config.toml
+  lineinfile:
+    path: /etc/containerd/config.toml 
+    line:  [proxy_plugins.cvmfs-snapshotter]\n type = "snapshot"\n address = "/run/containerd-cvmfs-grpc/containerd-cvmfs-grpc.sock"
+    insertafter: [proxy_plugins]
   when: not cvmfs_preconfigured|bool
