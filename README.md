@@ -45,7 +45,7 @@ Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-dat
 
 ``snapshotter``: install and configure the cvmfs-snapshotter (default: ``false``).
 
-``snapshotter_src_path``: 
+``snapshotter_path``: path where to install the cvmfs-snapshotter software (default: ``/usr/local/share``).
 
 Example Playbook
 ----------------
