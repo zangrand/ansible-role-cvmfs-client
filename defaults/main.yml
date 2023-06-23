@@ -29,6 +29,6 @@ cvmfs_mountpoint: '/cvmfs'
 
 add_fstab_entry: true
 
-snapshotter: 'none'
+snapshotter: false
 
 snapshotter_path: '/usr/local/share'
