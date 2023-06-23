@@ -22,7 +22,7 @@
 - name: insert lines in containerd config.toml
   blockinfile:
     path: /etc/containerd/config.toml
-    insertafter: '[proxy_plugins]'
+    insertafter: '^(.*)\[proxy_plugins\](.*)$'
     block: |
       [proxy_plugins.cvmfs-snapshotter]
        type = "snapshot"
