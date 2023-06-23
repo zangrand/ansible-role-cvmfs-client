@@ -1,7 +1,7 @@
 marcoverl.cvmfs_client
 ======================
 
-Ansible role to install CernVM-FS Client.
+Ansible role to install CernVM-FS Client with or w/o containerd snapshotter
 
 Requirements
 ------------
@@ -21,11 +21,11 @@ Variables
 
 ``cvmfs_server_url``: sert cvmfs server complete url (default: ``'http://{{ server_url }}/cvmfs/{{ repository_name }}``).
 
-``cvmfs_public_key_path``: set path for cvmfs keys (default: ``/etc/cvmfs/keys``).
+``cvmfs_public_key_path``: set path for cvmfs keys (default: ``/etc/cvmfs/keys/infn.it``).
 
 ``cvmfs_public_key``: set cvfms public key, usually `<repository_name.pub>` (default: ``{{ repository_name }}.pub``).
 
-``cvmfs_preconfigured``: allow to mount cvmfs molumes importing preconfigured file (default: ``false``)
+``cvmfs_preconfigured``: allow to mount cvmfs volumes importing preconfigured file (default: ``false``)
 
 Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-data-galaxycloud-repository).
 
@@ -42,6 +42,10 @@ Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-dat
 ``cvmfs_mountpoint``: set cvmfs mount point (default: ``/cvmfs``, for reference data ``/refdata``). If set to ``/cvmfs`` the role will use ``cvmfs_config probe`` to mount the repository.
 
 ``add_fstab_entry``: add fstab entry to automatically mount the repository (default: ``true``).
+
+``snapshotter``: install and configure the cvmfs-snapshotter (default: ``false``).
+
+``snapshotter_src_path``: 
 
 Example Playbook
 ----------------
@@ -60,16 +64,19 @@ The role takes as input parameters the CernVM-FS server location details (stratu
         cvmfs_mountpoint: '/cvmfs'
 ```
 
-Mount volume through preconfigured cvmfs config.d files
+Install the client and the snapshotter.
 
 ```yaml
   - hosts: servers
     roles:
       - role: marcoverl.cvmfs_client
-        repository_name: 'rgw-cloud.pd.infn.it'
+        server_url: 'rgw-cloud.pd.infn.it'
+        repository_name: 'unpacked.infn.it'
         cvmfs_public_key: 'unpacked.infn.it.pub'
-        cvmfs_mountpoint: '/refdata'
-        cvmfs_preconfigured: true
+        proxy_url: 'DIRECT'
+        proxy_port: '80'
+        cvmfs_mountpoint: '/cvmfs'
+        snapshotter: true
 ```
 
 
