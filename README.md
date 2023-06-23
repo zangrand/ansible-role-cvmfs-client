@@ -1,7 +1,7 @@
 marcoverl.cvmfs_client
 ======================
 
-Ansible role to install CernVM-FS Client with or w/o containerd snapshotter
+Ansible role to install CernVM-FS Client with or w/o its containerd snapshotter
 
 Requirements
 ------------
