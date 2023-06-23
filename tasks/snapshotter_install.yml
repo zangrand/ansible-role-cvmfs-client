@@ -21,4 +21,4 @@
   command: go mod tidy chdir={{snapshotter_path}}/containerd-remote-snapshotter 
 - command: make chdir={{snapshotter_path}}/containerd-remote-snapshotter
   environment: 
-    PREFIX: "/usr/local/bin"
+    PREFIX: "/usr/local/bin/"
