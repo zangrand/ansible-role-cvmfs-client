@@ -6,7 +6,7 @@
     uid: 1000
     group: cvmfs
     home: /var/lib/cvmfs
-  when: snapshotter|boolean
+  when: snapshotter|bool
   
 - name: '[EL] Install cvmfs repository'
   yum:
