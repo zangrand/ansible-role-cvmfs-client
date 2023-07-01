@@ -5,7 +5,7 @@
   command:
     cmd: ["(getent group 1000 > /dev/null) && (sed -i 's|1000|1234|g' /etc/group)",\
           "(getent passwd 1000 > /dev/null) && (sed -i 's|1000|1234|g' /etc/passwd)",\
-          "chown -R 1234.1234 `getent passwd 1234 | cut -d: -f6`"]
+          "chown -R 1234.1234 `getent passwd 1234 | cut -d':' -f6`"]
   ignore_errors: yes
   when: snapshotter|bool
 
