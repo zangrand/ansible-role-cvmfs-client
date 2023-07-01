@@ -9,6 +9,15 @@
   - { src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/containerd-cvmfs-grpc/config.toml', dest: '/etc/containerd-cvmfs-grpc/config.toml' }
   - { src: '{{snapshotter_path}}/containerd-remote-snapshotter/script/config/etc/systemd/system/cvmfs-snapshotter.service', dest: '/etc/systemd/system/cvmfs-snapshotter.service' }
   
+- name: replace lines in containerd-cvmfs-grpc config.toml
+  lineinfile: 
+    path: /etc/containerd-cvmfs-grpc/config.toml 
+    regexp: '{{item.from}}' 
+    line: '{{item.to}}'
+    firstmatch: yes
+  with_items:
+  - { from: '^(.*)repository(.*)$', to: 'repository={{repository_name}}' }
+
 - name: replace lines in containerd config.toml
   lineinfile: 
     path: /etc/containerd/config.toml 
