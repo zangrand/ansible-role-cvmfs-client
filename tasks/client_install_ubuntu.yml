@@ -7,7 +7,7 @@
     group: cvmfs
     system: true
     home: /cvmfs
-  when: snapshotter|boolean
+  when: snapshotter|bool
 
 - name: '[Ubuntu] Install cmvfs client repository'
   apt:
