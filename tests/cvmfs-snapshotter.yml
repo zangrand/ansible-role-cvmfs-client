@@ -1,4 +1,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - { role: marcoverl.cvmfs_client, snapshotter: cvmfs-snapshotter }
+    - { role: marcoverl.cvmfs_client, snapshotter: true }
