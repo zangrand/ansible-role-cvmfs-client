@@ -1,13 +1,4 @@
 ---
-- name: '[EL] add cvmfs user with uid 1000'
-  user:
-    name: cvmfs
-    comment: cvmfs user
-    uid: 1000
-    group: cvmfs
-    home: /var/lib/cvmfs
-  when: snapshotter|bool
-  
 - name: '[EL] Install cvmfs repository'
   yum:
     name: 'https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm'
