@@ -1,5 +1,5 @@
 ---
-- name: add cvmfs user with uid 1000
+- name: '[Ubuntu] Add cvmfs user with uid 1000'
   user:
     name: cvmfs
     comment: cvmfs user
