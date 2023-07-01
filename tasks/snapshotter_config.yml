@@ -16,7 +16,7 @@
     line: '{{item.to}}'
     firstmatch: yes
   with_items:
-  - { from: '^(.*)repository(.*)$', to: 'repository={{repository_name}}' }
+  - { from: '^(.*)repository(.*)$', to: 'repository = "{{repository_name}}"' }
 
 - name: replace lines in containerd config.toml
   lineinfile: 
