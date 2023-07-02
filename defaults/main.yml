@@ -1,11 +1,11 @@
 ---
 # defaults file for cvmfs-client
 
-server_url: 'rgw-cloud.pd.infn.it' 
+server_url: 'rgw-cloud.pd.infn.it/cvmfswp6dc' 
 
 repository_name: 'unpacked.infn.it'
 
-cvmfs_server_url: 'https://{{ server_url }}/cvmfswp6dc/{{ repository_name }}'
+cvmfs_server_url: 'https://{{ server_url }}/{{ repository_name }}'
 
 cvmfs_public_key_path: '/etc/cvmfs/keys/infn.it'
 
