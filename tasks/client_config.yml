@@ -27,7 +27,7 @@
 
 - name: Copy public key
   copy:
-    src: 'repository_key.pub'
+    src: '{{ repository_name }}.pub'
     dest: '{{cvmfs_public_key_path}}/{{cvmfs_public_key}}'
   when: not cvmfs_preconfigured|bool
  
