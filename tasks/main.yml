@@ -3,7 +3,7 @@
 
 - include: client_install.yml
 
-- command: 'cvmfs_config stat -v'
+- command: 'cvmfs_config stat -v {{ repository_name}}'
   register: cvmfs_stat
   ignore_errors: yes
 
