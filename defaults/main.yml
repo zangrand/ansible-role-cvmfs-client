@@ -14,11 +14,6 @@ cvmfs_public_key: '{{ repository_name }}.pub'
 # Allow to mount cvmfs molumes importing preconfigured file
 cvmfs_preconfigured: false
 
-# A list of *.pub files with the key to the repository to be mounted.
-cvmfs_public_key_list_files: [ "datacloud.infn.it.pub", "unpacked.infn.it.pub" ]
-
-public_key_src_path: '/tmp'
-
 proxy_url: 'DIRECT'
 
 proxy_port: 80
