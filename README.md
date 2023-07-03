@@ -8,14 +8,10 @@ Requirements
 
 Python is required on host to run ansible.
 
-The apt ansible module requires the following packages on host to run:
-
-- python-apt (python 2)
-
 Variables
 ---------
 
-``server_url``: set cvmfs server url (e.g. ip address or domain).
+``server_url``: set cvmfs server url (e.g. ip address or domain, default: ``rgw-cloud.pd.infn.it/cvmfswp6dc``).
 
 ``repository_name``: set cvmfs server repository name (default: ``unpacked.infn.it``).
 
@@ -25,13 +21,7 @@ Variables
 
 ``cvmfs_public_key``: set cvfms public key, usually `<repository_name.pub>` (default: ``{{ repository_name }}.pub``).
 
-``cvmfs_preconfigured``: allow to mount cvmfs volumes importing preconfigured file (default: ``false``)
-
-Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-data-galaxycloud-repository).
-
-``cvmfs_public_key_list_files``:  list of ``*.pub`` files with the key to the repository to be mounted.
-
-``public_key_src_path``: set cvmfs public key temporary path (default: ``/tmp``).
+``cvmfs_preconfigured``: allow to mount cvmfs volumes importing preconfigured file: works for cern.ch and egi.eu repos (default: ``false``)
 
 ``proxy_url``: set proxy name (default: ``DIRECT``).
 
@@ -39,7 +29,7 @@ Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-dat
 
 ``cvmfs_http_proxy``: set proxy complete url (default: ``http://{{ proxy_url }}:{{ proxy_port }}``).
 
-``cvmfs_mountpoint``: set cvmfs mount point (default: ``/cvmfs``, for reference data ``/refdata``). If set to ``/cvmfs`` the role will use ``cvmfs_config probe`` to mount the repository.
+``cvmfs_mountpoint``: set cvmfs mount point (default: ``/cvmfs``). If set to ``/cvmfs`` the role will use ``cvmfs_config probe`` to mount the repository.
 
 ``add_fstab_entry``: add fstab entry to automatically mount the repository (default: ``true``).
 
@@ -50,33 +40,33 @@ Preconfigured files are hosted [here](https://github.com/indigo-dc/Reference-dat
 Example Playbook
 ----------------
 
-The role takes as input parameters the CernVM-FS server location details (stratum 0 address, public key and mount point).
+The role takes the default values but one of the repositories of INFN-Cloud
 
 ```yaml
   - hosts: servers
     roles:
       - role: marcoverl.cvmfs_client
-        server_url: 'rgw-cloud.pd.infn.it'
         repository_name: 'unpacked.infn.it'
-        cvmfs_public_key: 'unpacked.infn.it.pub'
-        proxy_url: 'DIRECT'
-        proxy_port: '80'
-        cvmfs_mountpoint: '/cvmfs'
 ```
 
-Install the client and the snapshotter.
+Here it installs the client and the snapshotter.
 
 ```yaml
   - hosts: servers
     roles:
       - role: marcoverl.cvmfs_client
-        server_url: 'rgw-cloud.pd.infn.it'
         repository_name: 'unpacked.infn.it'
-        cvmfs_public_key: 'unpacked.infn.it.pub'
-        proxy_url: 'DIRECT'
-        proxy_port: '80'
-        cvmfs_mountpoint: '/cvmfs'
         snapshotter: true
+```
+
+Here it install the client and mounts the wenmr.egi.eu repository (all is preconfigured in the cvmfs-config-default package)
+
+```yaml
+  - hosts: servers
+    roles:
+      - role: marcoverl.cvmfs_client
+        repository_name: 'wenmr.egi.eu'
+        cvmfs_preconfigured: true
 ```
 
 
