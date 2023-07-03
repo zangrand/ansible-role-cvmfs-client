@@ -14,10 +14,9 @@
   when: not cvmfs_preconfigured|bool
 
 - name: Copy preconfigured config.d file
-  copy:
-    src: '{{ public_key_src_path }}/{{ repository_name }}.conf'
+  template:
+    src: cern-egi-repos.conf.j2
     dest: '/etc/cvmfs/config.d/{{ repository_name }}.conf'
-    remote_src: true
   when: cvmfs_preconfigured|bool
 
 - name: Create public key path
@@ -30,13 +29,6 @@
     src: '{{ repository_name }}.pub'
     dest: '{{cvmfs_public_key_path}}/{{cvmfs_public_key}}'
   when: not cvmfs_preconfigured|bool
- 
-- name: Copy public key for preconfigured repository
-  copy:
-    src: '{{ public_key_src_path }}/{{ repository_name }}.pub'
-    dest: '/etc/cvmfs/keys/{{ repository_name }}.pub'
-    remote_src: true
-  when: cvmfs_preconfigured|bool
 
 - name: '[VM] Restart autofs'
   service:
