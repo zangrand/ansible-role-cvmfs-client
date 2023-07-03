@@ -11,7 +11,7 @@ cvmfs_public_key_path: '/etc/cvmfs/keys/infn.it'
 
 cvmfs_public_key: '{{ repository_name }}.pub'
 
-# Allow to mount cvmfs molumes importing preconfigured file
+# Allow to mount cvmfs molumes with preconfigured files from cvmfs-config-default package
 cvmfs_preconfigured: false
 
 proxy_url: 'DIRECT'
