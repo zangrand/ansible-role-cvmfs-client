@@ -1,4 +1,10 @@
 ---
+- name: Add the user 'cvmfs' with a specific uid and a primary group of 'users'
+  user:
+    name: cvmfs
+    uid: 5001
+    group: users
+    
 - include: client_install_centos.yml
   when: ansible_os_family == "RedHat"
 
