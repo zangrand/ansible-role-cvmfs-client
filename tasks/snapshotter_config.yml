@@ -9,6 +9,12 @@
   - { src: '{{snapshotter_path}}/cvmfs/snapshotter/script/config/etc/containerd-cvmfs-grpc/config.toml', dest: '/etc/containerd-cvmfs-grpc/config.toml' }
   - { src: '{{snapshotter_path}}/cvmfs/snapshotter/script/config/etc/systemd/system/cvmfs-snapshotter.service', dest: '/etc/systemd/system/cvmfs-snapshotter.service' }
   
+- name: Delete directories
+  file:
+    path: {{snapshotter_path}}/cvmfs/{{item}}
+    state: absent
+  loop: {{bigdirs}}
+
 - name: replace lines in containerd-cvmfs-grpc config.toml
   lineinfile: 
     path: /etc/containerd-cvmfs-grpc/config.toml 
