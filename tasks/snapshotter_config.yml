@@ -11,9 +11,11 @@
   
 - name: Delete directories
   file:
-    path: '{{snapshotter_path}}/cvmfs/{{item}}'
+    path: '{{snapshotter_path}}/{{item}}'
     state: absent
-  loop: '{{bigdirs}}'
+  with_items:
+  - cvmfs
+  - nerdctl
 
 - name: replace lines in containerd-cvmfs-grpc config.toml
   lineinfile: 
