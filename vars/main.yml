@@ -1,2 +1,8 @@
 ---
 # vars file for cvmfs-client
+bigdirs:
+- cvmfs
+- ducc
+- externals
+- gateway
+- test
