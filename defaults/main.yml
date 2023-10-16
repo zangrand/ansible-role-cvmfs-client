@@ -1,7 +1,7 @@
 ---
 # defaults file for cvmfs-client
 
-server_url: 'rgw-cloud.pd.infn.it/cvmfswp6dc' 
+server_url: 'rgw.cloudveneto.it/cvmfswp6dc' 
 
 repository_name: 'unpacked.infn.it'
 
