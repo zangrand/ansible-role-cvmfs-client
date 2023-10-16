@@ -11,7 +11,7 @@ Python is required on host to run ansible.
 Variables
 ---------
 
-``server_url``: set cvmfs server url (e.g. ip address or domain, default: ``rgw-cloud.pd.infn.it/cvmfswp6dc``).
+``server_url``: set cvmfs server url (e.g. ip address or domain, default: ``rgw.cloudveneto.it/cvmfswp6dc``).
 
 ``repository_name``: set cvmfs server repository name (default: ``unpacked.infn.it``).
 
