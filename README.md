@@ -43,7 +43,7 @@ Example Playbook
 The role takes the default values but one of the repositories of INFN-Cloud
 
 ```yaml
-  - hosts: servers
+  - hosts: localhost
     roles:
       - role: marcoverl.cvmfs_client
         repository_name: 'unpacked.infn.it'
@@ -52,7 +52,7 @@ The role takes the default values but one of the repositories of INFN-Cloud
 Here it installs the client and the snapshotter.
 
 ```yaml
-  - hosts: servers
+  - hosts: localhost
     roles:
       - role: marcoverl.cvmfs_client
         repository_name: 'unpacked.infn.it'
@@ -62,7 +62,7 @@ Here it installs the client and the snapshotter.
 Here it install the client and mounts the wenmr.egi.eu repository (all is preconfigured in the cvmfs-config-default package)
 
 ```yaml
-  - hosts: servers
+  - hosts: localhost
     roles:
       - role: marcoverl.cvmfs_client
         repository_name: 'wenmr.egi.eu'
