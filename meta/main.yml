@@ -10,9 +10,9 @@ galaxy_info:
     versions:
     - jammy
     - focal
-  #- name: EL
-  #  versions:
-  #  - 7
+  - name: EL
+    versions:
+    - 7
   galaxy_tags:
     - cvmfs
     - filesystem
