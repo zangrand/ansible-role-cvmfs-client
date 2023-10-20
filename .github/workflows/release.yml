@@ -1,7 +1,9 @@
 name: Push to Galaxy
 
 on:
-  - push
+  push:
+    tags: 
+    - "*"
 
 jobs:
   test:
