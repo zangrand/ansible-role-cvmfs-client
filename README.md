@@ -68,7 +68,16 @@ Here it install the client and mounts the wenmr.egi.eu repository (all is precon
         repository_name: 'wenmr.egi.eu'
         cvmfs_preconfigured: true
 ```
+Here install the client and the snapshotter, and mount the unpacked.cern.ch repository
 
+```yaml
+- hosts: localhost
+  roles:
+    - role: marcoverl.cvmfs_client
+      repository_name: 'unpacked.cern.ch'
+      cvmfs_preconfigured: true
+      snapshotter: true
+```
 
 License
 -------
