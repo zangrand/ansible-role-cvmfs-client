@@ -3,7 +3,6 @@
   yum:
     name: 'https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm'
     state: present
-  register: install_yum_repo
 
 - name: '[EL] Install cvmfs client'
   yum:
@@ -13,5 +12,3 @@
   with_items:
    - cvmfs
    - cvmfs-config-default
-  register: install_cvmfs
-  when: install_yum_repo.failed is undefined
