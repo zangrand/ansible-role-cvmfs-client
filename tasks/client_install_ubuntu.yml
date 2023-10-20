@@ -5,8 +5,5 @@
 
 - name: '[Ubuntu] Install cvmfs client'
   apt:
-    name: '{{ item }}'
+    name: ['cvmfs', cvmfs-config-default']
     update_cache: yes
-  with_items:
-   - cvmfs
-   - cvmfs-config-default
