@@ -23,9 +23,9 @@
     path: /etc/containerd-cvmfs-grpc/config.toml 
     regexp: '{{item.from}}' 
     line: '{{item.to}}'
+    firstmatch: yes
   with_items:
   - { from: '^(.*)repository(.*)$', to: 'repository = "{{repository_name}}"' }
-  - { from: '^(.*)empty(.*)$', to: 'repository = "{{repository_name}}"' }
 
 - name: replace lines in containerd config.toml
   lineinfile: 
