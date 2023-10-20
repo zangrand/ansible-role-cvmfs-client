@@ -2,10 +2,11 @@
   snap: name=go classic=yes
     
 - name: Install other packages
-  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
-  with_items:
-    - make
-    - fuse3
+  apt:
+    name: ['make', 'fuse3']
+    state: latest 
+    update_cache: yes 
+    cache_valid_time: 3600
     
 - name: Creates directories for git clone
   file: path={{ item.path}} state=directory
