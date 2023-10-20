@@ -5,5 +5,5 @@
 
 - name: '[Ubuntu] Install cvmfs client'
   apt:
-    name: ['cvmfs', cvmfs-config-default']
+    name: ['cvmfs', 'cvmfs-config-default']
     update_cache: yes
