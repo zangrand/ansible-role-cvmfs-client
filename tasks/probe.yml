@@ -4,5 +4,5 @@
   register: probe_output
 
 - fail:
-    msg: 'cvmfs_config probe fail!'
-  when: probe_output.stdout != "Probing /cvmfs/'repository_name'... OK"
+    msg: 'cvmfs_config probe failed to probe repsitory_name!'
+  when: probe_output.stdout != 'Probing /cvmfs/repository_name... OK'
