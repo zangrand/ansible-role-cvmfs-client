@@ -5,4 +5,4 @@
 
 - fail:
     msg: 'cvmfs_config probe fail!'
-  when: probe_output.stdout != 'Probing /cvmfs/{{ repository_name }}... OK'
+  when: probe_output.stdout != "Probing /cvmfs/'repository_name'... OK"
