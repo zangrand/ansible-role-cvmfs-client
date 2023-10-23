@@ -8,4 +8,5 @@
   yum:
     name: ['cvmfs', 'cvmfs-config-default']
     update_cache: yes
+    disable_gpg_check: true
     state: present
