@@ -3,7 +3,7 @@
   user:
     uid: 1000
     check_mode: true
-  ignore_error: true
+  ignore_errors: true
   register: res
   
 - name: Create the cvmfs user with UID 1000 if it doesn't exist
