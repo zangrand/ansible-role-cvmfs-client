@@ -1,12 +1,14 @@
 ---
+- name: Base setup
+  command: 'cvmfs_config setup'
+  
 - name: Build default.local file
   template:
     src: default.local.j2
     dest: /etc/cvmfs/default.local
     
 - name: replace lines in default.local
-  #when: ansible_facts.getent_passwd is defined and ansible_os_family != "RedHat"
-  when: ansible_facts.getent_passwd is defined
+  when: ansible_facts.getent_passwd is defined and ansible_os_family != "RedHat"
   lineinfile: 
     path: /etc/cvmfs/default.local
     regexp: '{{item.from}}' 
@@ -14,9 +16,6 @@
     firstmatch: yes
   with_items:
   - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER={{ ansible_facts.getent_passwd.keys() | first }}' }
-
-- name: Base setup
-  command: 'cvmfs_config setup'
 
 - name: Build repository config.d file
   template:
