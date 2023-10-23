@@ -1,12 +1,21 @@
 - name: Install go with snap
   snap: name=go classic=yes
-    
+  when: ansible_os_family == "Debian"
+  
 - name: Install other packages
   apt:
     name: ['make', 'fuse3']
     state: latest 
     update_cache: yes 
     cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+
+- name: Install go and other packages with yum
+  yum:
+    name: ['go', 'cvmfs', 'cvmfs-config-default']
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "RedHat"   
     
 - name: Creates directories for git clone
   file: path={{ item.path}} state=directory
