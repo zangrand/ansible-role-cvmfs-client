@@ -27,6 +27,11 @@
   with_items:
   - { from: '^(.*)repository(.*)$', to: 'repository = "{{repository_name}}"' }
 
+- name: Ensure the directory /etc/containerd exists
+  file:
+    path: /etc/containerd
+    state: directory
+    
 - name: Touch file
   file:
     path: /etc/containerd/config.toml
