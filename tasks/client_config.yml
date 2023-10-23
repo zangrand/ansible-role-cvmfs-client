@@ -11,9 +11,9 @@
   getent:
     database: passwd
     key: 1000
-  debug:
+- debug:
     var: ansible_facts.getent_user
-
+    
 - name: replace lines in default.local
   lineinfile: 
     path: /etc/cvmfs/default.local
