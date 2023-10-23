@@ -14,7 +14,7 @@
     line: '{{item.to}}'
     firstmatch: yes
   with_items:
-  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{ ansible_facts.getent_passwd.keys() | first }}"' }
+  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER={{ ansible_facts.getent_passwd.keys() | first }}' }
 
 - name: Build repository config.d file
   template:
