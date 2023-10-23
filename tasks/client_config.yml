@@ -7,10 +7,12 @@
     src: default.local.j2
     dest: /etc/cvmfs/default.local
 
-- name: Get the user with UID 1000
-  command: getent passwd 1000 | cut -d':' -f1
-  ignore_errors: yes
-  register: user1000
+- name: Get uid 1000 user info
+  getent:
+    database: passwd
+    key: 1000
+  debug:
+    var: ansible_facts.getent_user
 
 - name: replace lines in default.local
   lineinfile: 
@@ -19,7 +21,7 @@
     line: '{{item.to}}'
     firstmatch: yes
   with_items:
-  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{user1000.stdout}}"' }
+  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{ansible_facts.getent_user}}"' }
 
 - name: Build repository config.d file
   template:
