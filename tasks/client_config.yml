@@ -6,12 +6,6 @@
   template:
     src: default.local.j2
     dest: /etc/cvmfs/default.local
-
-- name: Get uid 1000 user info
-  user:
-    uid: 1000
-    check_mode: true
-  register: res
     
 - name: replace lines in default.local
   lineinfile: 
@@ -20,7 +14,7 @@
     line: '{{item.to}}'
     firstmatch: yes
   with_items:
-  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{res.name}}"' }
+  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{ ansible_facts.getent_passwd.keys() | first }}"' }
 
 - name: Build repository config.d file
   template:
