@@ -13,7 +13,7 @@
     uid: 1000
     group: users
     state: present
-  when: ansible_facts.getent_passwd[0] == ''
+  when: ansible_facts.getent_passwd == null
     
 - include: client_install_centos.yml
   when: ansible_os_family == "RedHat"
