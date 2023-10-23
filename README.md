@@ -68,7 +68,7 @@ Here it install the client and mounts the wenmr.egi.eu repository (all is precon
         repository_name: 'wenmr.egi.eu'
         cvmfs_preconfigured: true
 ```
-Here install the client and the snapshotter, and mounts the unpacked.cern.ch repository
+Here install the client and the snapshotter, mounts the unpacked.cern.ch repository and use squid proxies 
 
 ```yaml
 - hosts: localhost
@@ -77,6 +77,8 @@ Here install the client and the snapshotter, and mounts the unpacked.cern.ch rep
       repository_name: 'unpacked.cern.ch'
       cvmfs_preconfigured: true
       snapshotter: true
+      proxy_url: 'squid'
+      cvmfs_http_proxy: "'http://squid-01.pd.infn.it:3128|http://squid-02.pd.infn.it:3128'"
 ```
 
 License
