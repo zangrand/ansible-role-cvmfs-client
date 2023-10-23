@@ -1,6 +1,8 @@
 ---
-- name: Check if a user with UID 1000 exists
-  command: getent passwd 1000 | cut -d':' -f1
+- name: Get root user info
+  getent:
+    database: passwd
+    key: 1000
   ignore_errors: yes
   register: user1000
 
@@ -10,7 +12,7 @@
     uid: 1000
     group: users
     state: present
-  when: user1000.stdout == ""
+  when: user1000.rc != 0
     
 - include: client_install_centos.yml
   when: ansible_os_family == "RedHat"
