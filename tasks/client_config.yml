@@ -8,6 +8,7 @@
     dest: /etc/cvmfs/default.local
     
 - name: replace lines in default.local
+  when: ansible_facts.getent_passwd is defined
   lineinfile: 
     path: /etc/cvmfs/default.local
     regexp: '{{item.from}}' 
