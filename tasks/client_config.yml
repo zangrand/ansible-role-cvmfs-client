@@ -8,7 +8,7 @@
     dest: /etc/cvmfs/default.local
 
 - name: Get the user with UID 1000
-  command: getent passwd 1000 | cut -d: -f1
+  command: getent passwd 1000 | cut -d':' -f1
   ignore_errors: yes
   register: user1000
 
