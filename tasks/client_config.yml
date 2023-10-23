@@ -7,6 +7,20 @@
     src: default.local.j2
     dest: /etc/cvmfs/default.local
 
+- name: Get the user with UID 1000
+  command: getent passwd 1000 | cut -d: -f1
+  ignore_errors: yes
+  register: user1000
+
+- name: replace lines in default.local
+  lineinfile: 
+    path: /etc/cvmfs/default.local
+    regexp: '{{item.from}}' 
+    line: '{{item.to}}'
+    firstmatch: yes
+  with_items:
+  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{user1000.stdout}}"' }
+
 - name: Build repository config.d file
   template:
     src: repository.conf.j2
