@@ -1,7 +1,13 @@
 ---
 # tasks file for cvmfs-client
 
+- name: Skip installation of cvmfs if /cvmfs path exists
+  stat:
+    path: /cvmfs
+  register: p
+  
 - include: client_install.yml
+  when: not p.stat.isdir
 
 - command: 'cvmfs_config stat -v {{ repository_name}}'
   register: cvmfs_stat
