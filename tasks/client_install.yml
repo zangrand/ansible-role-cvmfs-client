@@ -1,9 +1,11 @@
 ---
-- name: Get root user info
+- name: Get uid 1000 user info
   getent:
     database: passwd
     key: 1000
   ignore_errors: yes
+  debug:
+    var: ansible_facts.getent_user
   register: user1000
 
 - name: Create the cvmfs user with UID 1000 if it doesn't exist
