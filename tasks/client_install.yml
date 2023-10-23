@@ -10,7 +10,7 @@
     uid: 1000
     group: users
     state: present
-  when: user1000.output == ""
+  when: user1000.stdout == ""
     
 - include: client_install_centos.yml
   when: ansible_os_family == "RedHat"
