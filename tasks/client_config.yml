@@ -8,11 +8,10 @@
     dest: /etc/cvmfs/default.local
 
 - name: Get uid 1000 user info
-  getent:
-    database: passwd
-    key: 1000
-- debug:
-    var: ansible_facts.getent_user
+  user:
+    uid: 1000
+    check_mode: true
+  register: res
     
 - name: replace lines in default.local
   lineinfile: 
@@ -21,7 +20,7 @@
     line: '{{item.to}}'
     firstmatch: yes
   with_items:
-  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{ansible_facts.getent_user}}"' }
+  - { from: '^(.*)CVMFS_USER(.*)$', to: 'CVMFS_USER = "{{res.name}}"' }
 
 - name: Build repository config.d file
   template:
