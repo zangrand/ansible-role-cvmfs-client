@@ -1,10 +1,11 @@
 ---
-- name: Get uid 1000 user info
-  user:
-    uid: 1000
-    check_mode: true
-  ignore_errors: true
-  register: res
+- name: Get root user info
+  getent:
+    database: passwd
+    key: '1000'
+    fail_key: false
+- debug:
+    var: ansible_facts.getent_passwd
   
 - name: Create the cvmfs user with UID 1000 if it doesn't exist
   user:
@@ -12,7 +13,7 @@
     uid: 1000
     group: users
     state: present
-  when: res.rc != 0
+  when: ansible_facts.getent_passwd[0] == ''
     
 - include: client_install_centos.yml
   when: ansible_os_family == "RedHat"
