@@ -1,6 +1,6 @@
 ---
 - name: Check if a user with UID 1000 exists
-  command: getent passwd 1000 | cut -d: -f1
+  command: getent passwd 1000 | cut -d':' -f1
   ignore_errors: yes
   register: user1000
 
