@@ -1,6 +1,6 @@
 ---
-- include: snapshotter_install_centos.yml
+- include_tasks: snapshotter_install_centos.yml
   when: ansible_os_family == "RedHat"
 
-- include: snapshotter_install_ubuntu.yml
+- include_tasks: snapshotter_install_ubuntu.yml
   when: ansible_os_family == "Debian"
