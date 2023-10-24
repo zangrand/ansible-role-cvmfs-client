@@ -6,18 +6,18 @@
     path: /cvmfs
   register: p
   
-- include: client_install.yml
+- include_tasks: client_install.yml
   when: p.stat.isdir is not defined
 
 - command: 'cvmfs_config stat -v {{ repository_name}}'
   register: cvmfs_stat
   ignore_errors: yes
 
-- include: client_config.yml
+- include_tasks: client_config.yml
   when: cvmfs_stat.rc != 0
 
-- include: snapshotter_install.yml
+- include_tasks: snapshotter_install.yml
   when: snapshotter|bool
 
-- include: snapshotter_config.yml
+- include_tasks: snapshotter_config.yml
   when: snapshotter|bool
