@@ -23,7 +23,7 @@
 
 - name: Download nerdctl archive
   get_url:
-    url: "https://github.com/marcoverl/nerdctl/releases/download/untagged-89bd856581f38bd91638/nerdctl-1.6.3-linux-amd64.tar.gz"
+    url: "https://github.com/marcoverl/nerdctl/releases/download/v1.6.3-cvmfs/nerdctl-1.6.3-linux-amd64.tar.gz"
     dest: "{{snapshotter_path}}/nerdctl/nerdctl-1.6.3-linux-amd64.tar.gz"
   register: download_result
     
