@@ -1,3 +1,4 @@
+---
 - name: Install go with snap
   snap: name=go classic=yes
   
