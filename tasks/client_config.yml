@@ -64,17 +64,17 @@
 # Mount cvmfs
 
 - name: '[VM] mount cvmfs using cvmfs_config probe'
-  include: probe.yml
+  include_tasks: probe.yml
   when:
   - cvmfs_mountpoint == '/cvmfs'
   - ansible_virtualization_type != "docker"
 
 - name: '[VM] mount cvmfs manually'
-  include: mount.yml
+  include_tasks: mount.yml
   when:
     - cvmfs_mountpoint != '/cvmfs'
     - ansible_virtualization_type != "docker"
 
 - name: '[Docker] mount cvmfs'
-  include: mount.yml
+  include_tasks: mount.yml
   when: ansible_virtualization_type == "docker"
