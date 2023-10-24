@@ -1,6 +1,6 @@
 - name: Install go with snap
   snap: name=go classic=yes
-  when: ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian
   
 - name: Install other packages
   apt:
