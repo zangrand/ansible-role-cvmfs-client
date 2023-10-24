@@ -28,5 +28,5 @@
   register: download_result
     
 - name: Extract nerdctl archive
-    command: "tar -C /usr/local/bin -zxvf {{snapshotter_path}}/nerdctl/nerdctl-1.6.3-linux-amd64.tar.gz"
+  command: "tar -C /usr/local/bin -zxvf {{snapshotter_path}}/nerdctl/nerdctl-1.6.3-linux-amd64.tar.gz"
   when: download_result.changed
