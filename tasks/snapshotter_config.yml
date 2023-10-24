@@ -1,3 +1,4 @@
+---
 - name: Creates directory
   file:
     path: /etc/containerd-cvmfs-grpc
