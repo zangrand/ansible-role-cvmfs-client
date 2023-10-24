@@ -1,6 +1,5 @@
 - name: Install go with snap
   snap: name=go classic=yes
-  when: ansible_os_family == "Debian
   
 - name: Install other packages
   apt:
@@ -8,14 +7,6 @@
     state: latest 
     update_cache: yes 
     cache_valid_time: 3600
-  when: ansible_os_family == "Debian"
-
-- name: Install go and other packages with yum
-  yum:
-    name: ['go', 'cvmfs', 'cvmfs-config-default']
-    update_cache: yes
-    state: present
-  when: ansible_os_family == "RedHat"   
     
 - name: Creates directories for git clone
   file: path={{ item.path}} state=directory
@@ -27,7 +18,7 @@
   git: repo={{ item.repo }} dest={{ item.dest }} clone=yes version={{item.version}}
   with_items:
     - { repo: "https://github.com/marcoverl/cvmfs", dest: "{{snapshotter_path}}/cvmfs", version: "fix-snapshotter", depth: 1 }
-    - { repo: "https://github.com/marcoverl/nerdctl", dest: "{{snapshotter_path}}/nerdctl", version: "v1.6.3" }
+    - { repo: "https://github.com/marcoverl/nerdctl", dest: "{{snapshotter_path}}/nerdctl", version: "v1.6.3", depth: 1 }
   
 - name: Build snapshotter 
   command: make chdir={{snapshotter_path}}/cvmfs/snapshotter
