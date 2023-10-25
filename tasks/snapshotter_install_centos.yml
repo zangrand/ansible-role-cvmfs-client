@@ -20,6 +20,7 @@
   command: make chdir={{snapshotter_path}}/cvmfs/snapshotter
   environment: 
     PREFIX: "/usr/local/bin/"
+    VERSION: "2.11.3-pre"
 
 - name: Download nerdctl archive
   get_url:
