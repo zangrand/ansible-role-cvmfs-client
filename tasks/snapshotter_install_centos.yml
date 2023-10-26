@@ -24,10 +24,10 @@
 
 - name: Download nerdctl archive
   get_url:
-    url: "https://github.com/marcoverl/nerdctl/releases/download/v1.6.3-cvmfs/nerdctl-1.6.3-linux-amd64.tar.gz"
-    dest: "{{snapshotter_path}}/nerdctl/nerdctl-1.6.3-linux-amd64.tar.gz"
+    url: "https://github.com/marcoverl/nerdctl/releases/download/v1.6.3-cvmfs/nerdctl-1.6.3-cvmfs-linux-amd64.tar.gz"
+    dest: "{{snapshotter_path}}/nerdctl/nerdctl-linux-amd64.tar.gz"
   register: download_result
     
 - name: Extract nerdctl archive
-  command: "tar -C /usr/local/bin -zxvf {{snapshotter_path}}/nerdctl/nerdctl-1.6.3-linux-amd64.tar.gz"
+  command: "tar -C /usr/local/bin -zxvf {{snapshotter_path}}/nerdctl/nerdctl-linux-amd64.tar.gz"
   when: download_result.changed
