@@ -24,7 +24,7 @@
 
 - name: Download nerdctl archive
   get_url:
-    url: "https://github.com/marcoverl/nerdctl/releases/download/v1.6.3-cvmfs/nerdctl-1.6.3-cvmfs-linux-amd64.tar.gz"
+    url: "https://github.com/containerd/nerdctl/releases/download/v1.7.0/nerdctl-1.7.0-linux-amd64.tar.gz"
     dest: "{{snapshotter_path}}/nerdctl/nerdctl-linux-amd64.tar.gz"
   register: download_result
     
