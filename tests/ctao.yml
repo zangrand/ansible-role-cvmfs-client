@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  roles:
+    - cvmfs
+  vars:
+    cvmfs_server_url: 'http://grid-cvmfs-one.desy.de:8000/cvmfs/@fqrn@'
+    repository_name: 'sw.cta-observatory.org'
+    cvmfs_public_key_path: '/etc/cvmfs/keys/sw.cta-observatory.org'
+    cvmfs_http_proxy: "'http://squid-01.pd.infn.it:3128|http://squid-02.pd.infn.it:3128'"
+    proxy_url: 'squid'
+    snapshotter: false
+
