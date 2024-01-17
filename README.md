@@ -38,7 +38,7 @@ Variables
 Example Playbook
 ----------------
 
-The role takes the default values but one of the repositories of CTAO
+The role configures the CTAO cvmfs repository
 
 ```yaml
   - hosts: localhost
