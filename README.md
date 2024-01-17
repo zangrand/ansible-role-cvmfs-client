@@ -1,4 +1,4 @@
-marcoverl.cvmfs_client
+ctao.cvmfs_client
 ======================
 
 Ansible role to install CernVM-FS Client with or w/o its containerd snapshotter
@@ -11,13 +11,11 @@ Python is required on host to run ansible.
 Variables
 ---------
 
-``server_url``: set cvmfs server url (e.g. ip address or domain, default: ``rgw.cloudveneto.it/cvmfswp6dc``).
+``repository_name``: set cvmfs server repository name (default: ``sw.cta-observatory.org``).
 
-``repository_name``: set cvmfs server repository name (default: ``unpacked.infn.it``).
+``cvmfs_server_url``: set cvmfs server complete url (default: ``http://grid-cvmfs-one.desy.de:8000/cvmfs/@fqrn@``).
 
-``cvmfs_server_url``: sert cvmfs server complete url (default: ``'http://{{ server_url }}/cvmfs/{{ repository_name }}``).
-
-``cvmfs_public_key_path``: set path for cvmfs keys (default: ``/etc/cvmfs/keys/infn.it``).
+``cvmfs_public_key_path``: set path for cvmfs keys (default: ``/etc/cvmfs/keys/{{ repository_name }}``).
 
 ``cvmfs_public_key``: set cvfms public key, usually `<repository_name.pub>` (default: ``{{ repository_name }}.pub``).
 
@@ -40,46 +38,20 @@ Variables
 Example Playbook
 ----------------
 
-The role takes the default values but one of the repositories of INFN-Cloud
+The role takes the default values but one of the repositories of CTAO
 
 ```yaml
   - hosts: localhost
     roles:
-      - role: marcoverl.cvmfs_client
-        repository_name: 'unpacked.infn.it'
+      - role: ctao.cvmfs_client
+        cvmfs_server_url: 'http://grid-cvmfs-one.desy.de:8000/cvmfs/@fqrn@'
+        repository_name: 'sw.cta-observatory.org'
+        cvmfs_public_key_path: '/etc/cvmfs/keys/sw.cta-observatory.org'
+        cvmfs_http_proxy: "'http://squid-01.pd.infn.it:3128|http://squid-02.pd.infn.it:3128'"
+        proxy_url: 'squid'
+        snapshotter: false
 ```
 
-Here it installs the client and the snapshotter.
-
-```yaml
-  - hosts: localhost
-    roles:
-      - role: marcoverl.cvmfs_client
-        repository_name: 'unpacked.infn.it'
-        snapshotter: true
-```
-
-Here it install the client and mounts the wenmr.egi.eu repository (all is preconfigured in the cvmfs-config-default package)
-
-```yaml
-  - hosts: localhost
-    roles:
-      - role: marcoverl.cvmfs_client
-        repository_name: 'wenmr.egi.eu'
-        cvmfs_preconfigured: true
-```
-Here install the client and the snapshotter, mounts the unpacked.cern.ch repository and use squid proxies 
-
-```yaml
-- hosts: localhost
-  roles:
-    - role: marcoverl.cvmfs_client
-      repository_name: 'unpacked.cern.ch'
-      cvmfs_preconfigured: true
-      snapshotter: true
-      proxy_url: 'squid'
-      cvmfs_http_proxy: "'http://squid-01.pd.infn.it:3128|http://squid-02.pd.infn.it:3128'"
-```
 
 License
 -------
